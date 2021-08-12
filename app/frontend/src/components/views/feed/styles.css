@@ -1,0 +1,51 @@
+.feed-container {
+    border: solid 1px #283845;
+    height: 100%;
+    width: 400px;
+    margin-bottom: 20px;
+    border-radius: 3px;
+}
+.feed-container > .media-container {
+    min-height: 70px;
+    max-height: 300px;
+    margin: 5px;
+    padding: 0px;
+    border: solid 0.5px #ccc;
+    box-shadow: 1px 1px 2px #283845;
+}
+.audio {
+    display: flex;
+    flex-direction: row;
+    height: 70px;
+}
+.audio > img {
+    background-color: #ccc;
+    position: relative;
+    height: 100%;
+}
+.audio > .audio-metadata {
+    display: flex;
+    flex-direction: column;
+    padding-left: 5px;
+    color: #283845;
+    width: 100%;
+}
+.audio > .audio-metadata > .audio-metadata-desc {
+    font-weight: normal;
+    word-wrap: break-word;
+    overflow: hidden;
+    font-size: 11px;
+}
+.audio > .media-stat-interact {
+    display: flex;
+    flex-direction: column;
+    width: 50px;
+    font-size: 25px;
+    text-align: center;
+}
+.audio > .media-stat-interact > label {
+    cursor: pointer;
+}
+.audio > .media-stat-interact > label:first-child {
+    border-bottom: solid 0.5px #ccc;
+}

@@ -1,0 +1,17 @@
+import "builtin.aqua"
+
+data Info:
+    external_addresses: []string
+
+data Service:
+    id: string
+    blueprint_id: string
+    owner_id: string
+
+func sayIt(word: string, node: string) -> Service:
+    x: *Service
+    -- assign compute to node
+    on node:
+        try:
+            x <- Srv.list()
+    <- x!

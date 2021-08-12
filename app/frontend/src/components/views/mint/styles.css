@@ -1,0 +1,180 @@
+.mint-container {
+    border: solid 1px #283845;
+    height: 100%;
+    width: 400px;
+    margin-bottom: 20px;
+    border-radius: 3px;
+    position: relative;
+    color: #283845;
+}
+.connect-wallet-module > div {
+    box-sizing: border-box;
+    height: 100%;
+    width: 90%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: solid 0.5px #ccc;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #283845;
+    cursor: pointer;
+    box-shadow: 1px 1px 2px 1px #ccc;
+}
+.connect-wallet-module > div:hover {
+    box-shadow: 0px 0px 0px 0px;
+}
+.connect-wallet-module > div > img {
+    height: 100px;
+}
+.connected-wallet-notification {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    font-size: 14px;
+    background-color: #ccc;
+    color: #283845;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    cursor: pointer;
+    
+}
+.connected-wallet-notification > label {
+
+}
+.connected-wallet-notification > i {
+    align-self: flex-end;
+    width: 100%;
+    text-align: right;
+    padding: 2px 5px 2px;
+    color: red;
+}
+.mint-container > .web3layer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+.mint-container > .web3layer > div {
+    width: 90%;
+}
+.mint-container > .web3layer > .mint-mini-map-container {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+     
+}
+.mint-container > .web3layer > .mint-mini-map-container > div {
+    box-shadow: 1px 1px 2px 1px #ccc;
+}
+.icon-overlay {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 100%;
+    padding: 5px;
+    background-color: #3777FF;
+    color: white;
+    font-size: 20px;
+    box-shadow: 1px 1px 2px 1px #ccc;
+}
+
+.nft-file > button {
+    padding: 0px;
+    color: white;
+    background-color: #283845;
+    height: 40px;
+    width: 150px;
+    box-shadow: 1px 1px 3px 1px black;
+    font-weight: bold;
+}
+.nft-mint {
+    display: flex;
+    flex-direction: column;
+}
+.nft-mint > button {
+    align-self: flex-end;
+    padding: 0px;
+    color: white;
+    background-color: #FF6666;
+    height: 40px;
+    width: 50px;
+    box-shadow: 1px 1px 3px 1px #283845;
+    font-weight: bold;
+    border-radius: 5px;
+}
+.nft-mint > button > * {
+    font-size: 25px;
+    font-weight: bold;
+}
+.nft-mint > span {
+    text-align: center;
+    align-self: flex-end;
+    width: 50px;
+    font-size: 12px;
+    font-style:italic;
+    font-weight:lighter;
+}
+.mint-container > .web3layer > .netowrk-details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.mint-container > .web3layer > .netowrk-details > * {
+    padding: 2px;
+}
+.mint-container > .web3layer > .media-container > div {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.mint-container > .web3layer > .media-container > div > label,
+.mint-container > .web3layer > .media-container > div > input,
+.mint-container > .web3layer > .media-container > div > textarea {
+    padding-bottom: 5px;
+    width: 100%;
+}
+.mint-container > .web3layer > .media-container > div > input,
+.mint-container > .web3layer > .media-container > div > textarea {
+    border-radius: 5px;
+    font-size: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border: solid 0.5px;
+}
+.mint-container > .web3layer > .media-container > .nft-desc > textarea {
+    height: 75px;   
+}
+.netowrk-details {
+    display: flex;
+    flex-direction: column;
+}
+.netowrk-details > label {
+    width: 20%;
+}
+.netowrk-details > div {
+    width: 80%;
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 0.5px #ccc;
+    box-shadow: 1px 1px 2px 1px #ccc;
+    border-radius: 5px;
+} 
+.netowrk-details > div > img {
+    height: 20px;
+} 
+.netowrk-details > div > label {
+    margin-left: 10px;
+}

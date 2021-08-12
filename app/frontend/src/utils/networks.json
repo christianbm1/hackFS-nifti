@@ -1,0 +1,12 @@
+[{
+        "chainId": 137,
+        "name": "Matic Mainnet",
+        "asset": "https://cryptologos.cc/logos/polygon-matic-logo.png",
+        "longName": "Polygon Network"
+},
+{
+        "chainId": 1,
+        "name": "Mainnet",
+        "asset": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Ethereum-icon-purple.svg/1200px-Ethereum-icon-purple.svg.png",
+        "longName": "Ethereum Network"
+}]

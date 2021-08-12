@@ -17,17 +17,25 @@ before(async function(){
 
 describe("Inital Test", function(){
     it('test', async function(){
-        await nft.mintNFT(addr2.address, "aaaa", ethers.utils.parseUnits((-15255.021458756478121).toString(), 15), ethers.utils.parseUnits((1.021458756478121).toString(), 15));
-        await nft.mintNFT(addr1.address, "abcd", ethers.utils.parseUnits((-15255.021458756478121).toString(), 15), ethers.utils.parseUnits((1.021458756478121).toString(), 15));
+        let token1 = await nft.mintNFT(addr2.address, "aaaa");
+        console.log(token1);
+        console.log(`${addr2.address} minted token1 with ID: ${token1}`);
+        let token2 = await nft.mintNFT(addr1.address, "abcd");
+        console.log(`${addr1.address} minted token2 with ID: ${token2}`);
+
+
+        console.log(`Owner of token1: ${await nft.ownerOf(1)}`);
+        console.log(`Owner of token2: ${await nft.ownerOf(2)}`);
     });
 
-    /*it('check nft created', async function(){
-        let z = await nft.Data(addr2.address);
-        console.log(ethers.utils.formatUnits(z.lat, 15));
-        console.log(ethers.utils.formatUnits(z.long, 15));
-    });*/
+    it('Testing the TransferFrom method', async function(){
+      let ans = await nft.transferFrom(addr1.address, addr2.address, 1);
+      console.log(`The response was ${ans}`)
+    });
 
-    it('all owners function', async function(){
+
+
+    /*it('all owners function', async function(){
         let z = await nft.allOwnersLength();
         console.log(parseInt(z));
         //let z = await nft.allOwners();
@@ -37,7 +45,7 @@ describe("Inital Test", function(){
             console.log(`Owner ${i}: ${addss}`);
             console.log(deet);
         }
-    });
+    });*/
 });
 /*
 describe("Escrow Contract Deployment", function() {

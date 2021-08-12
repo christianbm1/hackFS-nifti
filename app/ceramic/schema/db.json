@@ -1,0 +1,14 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "NiFTi Database",
+    "description": "Object Database containg all the NFTs in circulation.",
+    "type": "object",
+    "properties": {
+        "data": {
+            "type": "array",
+            "items": {
+                "type": "object"
+            }
+        }
+    }
+}

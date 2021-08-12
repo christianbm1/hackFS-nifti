@@ -1,0 +1,161 @@
+.body-main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #F9F5E3;
+}
+.body-main > .view-container > .view-controller {
+    height: 110px;
+    width: 320px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    padding-bottom: 5px;
+
+}
+.body-main > .view-container > .view-controller > ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    list-style: none;
+    height: 100%;
+}
+.body-main > .view-container > .view-controller > ul > a {
+    text-decoration: none;
+}
+.body-main > .view-container > .view-controller > ul > a > li {
+    box-sizing: border-box;
+    border: solid 0.5px #283845;
+    width: 100px;
+    height: 100%;
+    text-align: center;
+    
+}
+.body-main > .view-container > .view-controller > ul > a> .menu-option {
+    display: flex;
+    flex-direction: column;
+    color: #283845;
+    border-radius: 2px;
+}
+.body-main > .view-container > .view-controller > ul > a >  .menu-option:hover {
+    background-color: #3777FF;
+    color: white;
+    cursor: pointer;
+    border: solid 3px black;
+    box-shadow: 4px 5px 1px 1px black;
+    font-weight: bold;
+}
+.body-main > .view-container > .view-controller > ul > a >  .menu-option > span {
+    height: 100%;
+    font-size: 50px;
+    color: #FF6666;
+}
+.body-main > .view-container > .view-controller > ul > a > .menu-option > label {
+    font-size: 18px;
+    font-weight: bold;
+} 
+.body-main > .view-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 98%;
+    height: 100%;
+    color:red;
+}
+/*
+.body-main > *:first-child {
+    background-color: #BBDBD1;
+    max-width: 500px;
+    width: 99%;
+    height: 610px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0px 30px 0px;
+}
+.body-main > * > .data {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.body-main > * > .data > .items {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.body-main > * > .data > .items > .itemh {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 10px 10px 10px;
+}
+.body-main > * > .data > .items > .itemv {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content:center;
+    padding: 10px 10px 10px 10px;
+}
+.body-main > * > .data > .items > .itemv > * {
+    padding-top: 10px;
+}
+.body-main > * > .data > .items > .itemv > * > input {
+
+    width: 90%;
+    align-self: center;
+}
+.body-main > * > .data > .items > .item > * {
+    width: 100%;
+    
+}
+.body-main > * > .data > .items > .item > *:last-child {
+    
+    align-items: flex-end;
+    text-align: end;
+} 
+.body-main > * > .data > .items > .item > .item-left {
+    
+    font-size: 1em;
+    
+}
+.body-main > * > .data > .items > .item > .item-right {
+    display: flex;
+    flex-direction: column;
+}
+.body-main > * > .data > .items > .item > .item-right > .label-info {
+    align-self:center;
+    font-size: 14px;
+    font-weight: normal;
+    font-style:italic;
+}
+.body-main > * > .data > .items > .item > .item-right > input {
+    margin: 0;
+    padding: 0;
+}
+.body-main > * > .data > .items > .item > .item-right > select,
+.body-main > * > .data > .items > .item > .item-right > input
+{
+    font-size: 20px;
+    padding: 2px 10px 2px 10px;
+    min-width: 250px;
+    border: solid 2px;
+    box-shadow: 1px 1px 2px 0px;
+    border-radius: 3px;
+}
+.body-main > * > .data > .items > .item > .item-right > select:focus,
+.body-main > * > .data > .items > .item > .item-right > input:focus {
+    border-color: grey;
+    outline: 0;   
+}*/
