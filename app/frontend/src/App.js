@@ -235,7 +235,7 @@ function App() {
   return (
     <Router>
     <div className="App">
-      {/*<Header web3={web3React} connectWallet={connectWallet}/>*/}
+      <Header web3={web3React} connectWallet={connectWallet}/>
       <Body >
         <Switch>
             <Route path="/mint">
@@ -260,7 +260,7 @@ function App() {
       </Body>
       <Footer />
       <div className='help'>
-        <a href='https://www.notion.so/Token-Factory-FAQs-b2d317f7cffa4e389d76073c50f9906e' target='_blank'><i class="fas fa-question" style={{padding: '15px', fontSize: '20px'}} /></a>
+        <a href='https://www.notion.so/NiFTi-FAQs-df2f9f05550143d0ac2bf71dfb7d5b05' target='_blank'><i class="fas fa-question" style={{padding: '15px', fontSize: '20px'}} /></a>
       </div>
       {/*<div className={`connect-wallet-module ${!walletConnected ? 'connect-wallet-module-display-on' : 'connect-wallet-module-display-off'}`}>
       </div>*/}

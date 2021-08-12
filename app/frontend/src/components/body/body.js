@@ -16,15 +16,15 @@ export default function Body(props){
             <div className='view-container'>
                 <div className='view-controller'>
                     <ul>
-                        <Link onClick={() => setMenuOptionActive(1)} to={"/"}><li className={`menu-option ${menuOptionActive == 1 ? null : 'container'}`}>
+                        <Link onClick={() => setMenuOptionActive(1)} to={"/"}><li className={`menu-option ${menuOptionActive == 1 ? null : ''}`}>
                             <span><i class="far fa-map"></i></span>
                             <label>Explore</label>
                         </li></Link>
-                        <Link onClick={() => setMenuOptionActive(2)} to={"/feed"}><li className={`menu-option ${menuOptionActive == 2 ? null : 'container'}`}>
+                        <Link onClick={() => setMenuOptionActive(2)} to={"/feed"}><li className={`menu-option ${menuOptionActive == 2 ? null : ''}`}>
                             <span><i class="fas fa-layer-group"></i></span>
                             <label>Feed</label>
                         </li></Link>
-                        <Link onClick={() => setMenuOptionActive(3)} to={"/mint"}><li className={`menu-option ${menuOptionActive == 3 ? null : 'container'}`}>
+                        <Link onClick={() => setMenuOptionActive(3)} to={"/mint"}><li className={`menu-option ${menuOptionActive == 3 ? null : ''}`}>
                             <span><i class="far fa-plus-square"></i></span>
                             <label>Mint</label>
                         </li></Link>

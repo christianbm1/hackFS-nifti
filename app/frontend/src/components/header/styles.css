@@ -1,0 +1,10 @@
+.header > .header-logo > img {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-bottom: 14px;
+    height: 60px;
+}

@@ -1,10 +1,14 @@
 .App {
   box-sizing: border-box;
   height: 100vh;
-  overflow: scroll;
+  overflow: none;
   padding: 10px;
   background-color: white;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
 }
 
 .App-logo {
@@ -15,31 +19,6 @@
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  border: solid blue 1px;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
   }
 }
 .container {
@@ -58,15 +37,6 @@
 }
 .notification-container {
   z-index: 20;
-}
-.header {
-  position: absolute;
-  top:20px;
-  right: 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  margin-bottom: 14px;
 }
 .help > a > * {
   position: absolute;

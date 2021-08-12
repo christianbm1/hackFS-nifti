@@ -45,13 +45,13 @@
     flex-direction: column;
     color: #283845;
     border-radius: 2px;
+    box-shadow: 1px 1px 2px 1px #ccc;
 }
 .body-main > .view-container > .view-controller > ul > a >  .menu-option:hover {
     background-color: #3777FF;
     color: white;
     cursor: pointer;
-    border: solid 3px black;
-    box-shadow: 4px 5px 1px 1px black;
+    box-shadow: 0px 0px 0px 0px #ccc;
     font-weight: bold;
 }
 .body-main > .view-container > .view-controller > ul > a >  .menu-option > span {

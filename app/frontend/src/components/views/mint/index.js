@@ -14,6 +14,7 @@ function SearchNetwork(chainId){
 
 function Web3Layer(props){
     let networkObj = SearchNetwork(props.networkChain);
+    console.log(networkObj);
     return(
         <React.Fragment>
             <div className='web3layer'>
@@ -37,13 +38,14 @@ function Web3Layer(props){
                         <Marker color={"#FF6666"}  width={30} anchor={[props.userLat, props.userLong]} />
                     </Map>
                 </div>
+                {networkObj ?
                 <div className='netowrk-details'>
                     <label>Network:</label>
                     <div>
                         <img src={networkObj.asset} height={40} />
                         <label>{networkObj.name}</label>
                     </div>
-                </div>
+                </div> : null}
                 <div className='media-container'>
                     <div className='nft-title'>
                         <label>Title</label>
