@@ -37,10 +37,11 @@ function ImageTemplate(props){
                 </span>
                 <div className='image-text-metadata'>
                     <div className='metadata-desc'>
-                    When you feeling  down and you cant succeed. when you not and you can
-                    When you feeling  down and you cant succeed. when you not and you can
-                    When you feeling  down and you cant succeed. when you not and you can
-                    When you feeling  down and you cant succeed. when you not and you can
+                    asdf wed saxfwef  asax aff bbb bbbb bbbbbbb. bbbb bbb bbb bbb bbb bbb
+                    asdf wed saxfwef  asax aff bbb bbbb bbbbbbb. bbbb bbb bbb bbb bbb bbb
+                    asdf wed saxfwef  asax aff bbb bbbb bbbbbbb. bbbb bbb bbb bbb bbb bbb
+                    asdf wed saxfwef  asax aff bbb bbbb bbbbbbb. bbbb bbb bbb bbb bbb bbb
+                    asdf wed saxfwef  asax aff bbb bbbb bbbbbbb. bbbb bbb bbb bbb bbb bbb
                     </div>
                 </div>
                 <div className='drawer-control' onClick={() => setDrawerActive(drawerActive ? 0 : 1)}>
@@ -82,14 +83,13 @@ function VideoTemplate(props){
                 </span>
                 <div className='image-text-metadata'>
                     <div className='metadata-desc' onClick={() => setDrawerActive(drawerActive ? 0 : 1)}>
-                    When you feeling  down and you cant succeed. when you not and you can
-                    When you feeling  down and you cant succeed. when you not and you can
-                    When you feeling  down and you cant succeed. when you not and you can
-                    When you feeling  down and you cant succeed. when you not and you can
-                    When you feeling  down and you cant succeed. when you not and you can
-                    When you feeling  down and you cant succeed. when you not and you can
-                    When you feeling  down and you cant succeed. when you not and you can
-                    When you feeling  down and you cant succeed. when you not and you can
+                    asdf wed saxfwef  asax aff bbb bbbb bbbbbbb. bbbb bbb bbb bbb bbb bbb
+                    asdf wed saxfwef  asax aff bbb bbbb bbbbbbb. bbbb bbb bbb bbb bbb bbb
+                    asdf wed saxfwef  asax aff bbb bbbb bbbbbbb. bbbb bbb bbb bbb bbb bbb
+                    asdf wed saxfwef  asax aff bbb bbbb bbbbbbb. bbbb bbb bbb bbb bbb bbb
+                    asdf wed saxfwef  asax aff bbb bbbb bbbbbbb. bbbb bbb bbb bbb bbb bbb
+                    asdf wed saxfwef  asax aff bbb bbbb bbbbbbb. bbbb bbb bbb bbb bbb bbb
+                    asdf wed saxfwef  asax aff bbb bbbb bbbbbbb. bbbb bbb bbb bbb bbb bbb
                     </div>
                 </div>
                 <div className='drawer-control' onClick={() => setDrawerActive(drawerActive ? 0 : 1)}>
@@ -108,12 +108,13 @@ function textTemplate(props){
                 src='https://www.loc.gov/static/images/original-format/sound-recording.png'
             />
             <div className='audio-metadata'>
-                <span className='audio-metadata-title'>Motombo on Grass</span>
+                <span className='audio-metadata-title'>aassasa aa ewewewe</span>
                 <span className='metadata-desc'>
-                When you feeling  down and you cant succeed. when you not and you can
-                When you feeling  down and you cant succeed. when you not and you can
-                When you feeling  down and you cant succeed. when you not and you can
-                When you feeling  down and you cant succeed. when you not and you can
+                asdf wed saxfwef  asax aff bbb bbbb bbbbbbb. bbbb bbb bbb bbb bbb bbb
+                asdf wed saxfwef  asax aff bbb bbbb bbbbbbb. bbbb bbb bbb bbb bbb bbb
+                asdf wed saxfwef  asax aff bbb bbbb bbbbbbb. bbbb bbb bbb bbb bbb bbb
+                asdf wed saxfwef  asax aff bbb bbbb bbbbbbb. bbbb bbb bbb bbb bbb bbb
+                asdf wed saxfwef  asax aff bbb bbbb bbbbbbb. bbbb bbb bbb bbb bbb bbb
                 </span>
             </div>
 
