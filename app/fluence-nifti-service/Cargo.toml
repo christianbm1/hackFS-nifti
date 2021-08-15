@@ -1,0 +1,27 @@
+[package]
+name = "nifti_service"
+version = "0.1.0"
+authors = ["Christian Martinez <christianbm1@gmail.com>"]
+edition = "2018"
+description = "nifti-service, a Marine wasi module"
+license = "Apache-2.0"
+
+[[bin]]
+name = "nifti_service"
+path = "src/main.rs"
+
+[dependencies]
+marine-rs-sdk = "0.6.11"
+log = "0.4.14"
+picorand = "0.1.1"
+fstrings = "0.2.3"
+serde_json = {version = "1.0.57"}
+serde = {version = "1.0.57", features = ["derive"]}
+geoutils = "0.4.1"
+
+[dev-dependencies]
+marine-rs-sdk-test = "0.1.11"
+
+[dev]
+[profile.release]
+opt-level = "s"

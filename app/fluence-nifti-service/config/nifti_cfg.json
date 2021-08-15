@@ -1,0 +1,5 @@
+{
+    "name": "nifti_service",
+    "mem_pages_count": 1,
+    "logger_enabled": false
+}

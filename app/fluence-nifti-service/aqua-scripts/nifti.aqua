@@ -1,0 +1,23 @@
+import "builtin.aqua"
+
+data Res:
+  lat: f64
+  long: f64
+  tag: string
+  key: string
+
+data Result:
+  result: []Res
+  success: bool
+  error_msg: string
+
+service NiftiService:
+  check_location(my_lat: f64, my_long: f64, i_lat: f64, i_long: f64, dist: f64) -> bool
+  price_getter(dataIn: []Res, current_lat: f64, current_long: f64, distance: f64) -> Result
+
+func test(node: string, service_id: string, dataIn: []Res, current_lat: f64, current_long: f64, distance: f64) -> []Result:
+  res: *Result
+  on node:
+    NiftiService service_id
+    res <- NiftiService.price_getter(dataIn, current_lat, current_long, distance)
+  <- res
