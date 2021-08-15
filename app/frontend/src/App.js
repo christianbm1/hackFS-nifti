@@ -251,7 +251,6 @@ function App() {
     
       <Header web3={web3React} connectWallet={connectWallet}/>
       <Body >
-      <button onClick={saveCoordsNft}>ssss</button>
         <Switch>
             <Route path="/mint">
               <Mint 
