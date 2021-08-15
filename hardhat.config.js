@@ -61,6 +61,10 @@ module.exports = {
       gasPrice: 20000000000,
       accounts: {mnemonic: mnemonic}
     },
+    mumbai: {
+      url: process.env.POLYGON_TEST,
+      accounts: [`${process.env.POLYGON_TEST_KEY}`, `${process.env.KOVAN_KEY_2}`],
+    },
   },
   gasReporter: {
     currency: 'USD',

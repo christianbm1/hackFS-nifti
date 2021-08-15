@@ -62,6 +62,8 @@ contract NFTFactory is ERC721URIStorage, ContextMixin, Ownable  {
         // otherwise, use the default ERC721.isApprovedForAll()
         return ERC721.isApprovedForAll(_owner, _operator);
     }
+
+    function transferNFT(address from, address to, uint256 tokenId) public {
+        return ERC721.safeTransferFrom(from, to, tokenId);
+    }
 }
-//
-//
