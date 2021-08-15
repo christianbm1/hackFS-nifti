@@ -39,7 +39,7 @@ contract NFTFactory is ERC721URIStorage, ContextMixin, Ownable  {
     
 
     function mintNFT(address recipient, string memory tokenURI)
-        public onlyOwner
+        public
         returns (uint256)
     {
         _tokenIds.increment();

@@ -116,7 +116,23 @@ function App() {
   let [bypassWeb3, setBypassWeb3] = React.useState(0);
   let [networkChain, setNetworkChain] = React.useState(0);
   let [currentNftData, setCurrentNftData] = React.useState(undefined);
+  let [nftDeployedAddress, setNftDeployedAddress] = React.useState(undefined);
 
+
+  async function mintNFT(){
+    try {
+      setTransactionStatus(1);
+      await contract.methods.mintNFT(
+        ).then((receipt) => {
+          setNftDeployedAddress(receipt.events.['0'].address);
+          setTransactionStatus(9);
+        });
+    } catch(e){
+      console.log(e)
+      setTransactionStatus(0);
+    }
+  }
+  
   async function saveNFT(name, desc, file){
     console.log(file.type);
     let metadata = await client.store({
