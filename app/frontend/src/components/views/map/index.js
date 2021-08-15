@@ -16,7 +16,7 @@ export default function MapBox (props) {
         <div className='map-container container'>
                 <Map provider={stamenToner} dprs={[1, 2]} defaultCenter={[props.userLat, props.userLong]} defaultZoom={15}>
                     {
-                        data.map(x => <Marker color={"#FF6666"}  width={50} anchor={[x.latitude, x.longtitude]} onClick={() => console.log(x.name)}/>)
+                        props.nftData.map(x => <Marker color={"#FF6666"}  width={50} anchor={[x.lat, x.long]} onClick={() => console.log(x.name)}/>)
                     }
                 </Map>
         </div>

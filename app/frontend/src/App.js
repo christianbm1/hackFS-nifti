@@ -24,7 +24,22 @@ import { Web3ReactProvider, useWeb3React } from '@web3-react/core';
 import { Web3Provider } from '@ethersproject/providers';
 import { InjectedConnector } from '@web3-react/injected-connector';
 import Web3 from 'web3';
+import CeramicClient from '@ceramicnetwork/http-client';
+import { TileDocument } from '@ceramicnetwork/stream-tile';
 import factoryContract from './contracts/Factory.json';
+
+import { createClient } from "@fluencelabs/fluence";
+import { testNet } from "@fluencelabs/fluence-network-environment";
+import { test } from "./utils/fluence/compiled/nifti.js";
+
+const CERAMIC_API_URL = "https://ceramic-clay.3boxlabs.com/";
+
+const ceramic = new CeramicClient(CERAMIC_API_URL);
+
+const streamId = "kjzl6cwe1jw148d384e00juj0sho9r5er8ju462545afehveirvzjbraxkjrxwi";
+
+
+
 const proxyAddress = '0x5536495a6e96BF1BB66F549372c4689bdeA84432';
 
 const injectedConnector = new InjectedConnector({
@@ -86,20 +101,10 @@ function NotificationSwitch(control, stateChageFn){
 function App() {
   const web3React = useWeb3React();
   const web3 = new Web3(Web3.givenProvider);
-  let [tokenName, setTokenName] = React.useState();
-  let [tokenSymbol, setTokenSymbol] = React.useState();
-  let [tokenSupply, setTokenSupply] = React.useState();
-  let [tokenDecimals, setTokenDecimals] = React.useState();
-  let [rewards, setRewards] = React.useState([0]);
-  let [burn, setBurn] = React.useState([0]);
-  let [tax, setTax] = React.useState([0]);
-  let [taxWallet, setTaxWallet] = React.useState();
-  let [ready, setReady] = React.useState(0);
-  let [fee, setFee] = React.useState(0);
   let [walletConnected, setWalletConnected] = React.useState(0);
   let [contract, setContract] = React.useState(new web3.eth.Contract(factoryContract.abi, proxyAddress));
   let [transactionStatus, setTransactionStatus] = React.useState();
-  let [deployedTokenAddress, setDeployedTokenAddress] = React.useState(undefined);
+  
   
   let [userLat, setUserLat] = React.useState(undefined);
   let [userLong, setUserLong] = React.useState(undefined);
@@ -107,11 +112,41 @@ function App() {
   let [geoLocationDenied, setGeoLocationDenied] = React.useState(0);
   let [bypassWeb3, setBypassWeb3] = React.useState(0);
   let [networkChain, setNetworkChain] = React.useState(0);
+  let [currentNftData, setCurrentNftData] = React.useState(undefined);
 
-  React.useEffect(() => {
-
-  });
   
+ async function getData(data){
+    const client = await createClient(testNet[1]);
+    
+    let w = await test(client, 
+      "12D3KooWFEwNWcHqi9rtsmDhsYcDbRUCDXH84RC4FW6UfsFWaoHi", 
+      "3e4924f0-8a65-40d4-a743-7451eda9918d",
+      data,
+      userLat,
+      userLong,
+      1000.00,
+      ""
+      );
+      //console.log(w[0][0].result);
+      setCurrentNftData(w[0][0].result);
+  };
+
+  async function loadCeramicStream(){
+    let out = []
+    let db = await TileDocument.load(ceramic, "kjzl6cwe1jw149nt5bsoyni2pd74yoemp43k8g6kr789lebgklj3jjx2ps0qngv");
+    //const stream = await ceramic.loadStream(db);
+    let streamData = await ceramic.multiQuery(db.content.data);
+    let keys = Object.keys(streamData);
+    keys.forEach(key => {
+        out.push({...streamData[key].content, "key": key});
+    });
+    getData(out);
+  }
+
+  React.useEffect(async () => {
+    await loadCeramicStream();
+  }, []);
+
   async function connectWallet(){
     if(!walletConnected){
       web3React.activate(injectedConnector);
@@ -120,35 +155,6 @@ function App() {
     }
   }
 
-  async function getPrice(){
-    let p = web3.utils.fromWei(await contract.methods.escrowFee().call());  
-    setFee((parseFloat(p) + 0.001).toFixed(3));
-    return (parseFloat(p) + 0.001).toFixed(4);
-  }
-
-  async function createToken(){
-    try {
-      setTransactionStatus(1);
-      await contract.methods.createToken(
-        web3React.account,
-        tokenName,
-        tokenSymbol,
-        parseInt(tokenSupply),
-        parseInt(tokenDecimals),
-        parseInt(rewards),
-        parseInt(burn),
-        parseInt(tax),
-        taxWallet ? taxWallet : '0x0000000000000000000000000000000000000000'
-        //taxWallet ? web3.utils.toChecksumAddress(taxWallet) : web3.utils.toChecksumAddress('0x0000000000000000000000000000000000000000')
-        ).send({value: web3.utils.toWei(`${await getPrice()}`), from: web3React.account, gasLimit: 3000000}).then((receipt) => {
-          setDeployedTokenAddress(receipt.events.['0'].address);
-          setTransactionStatus(9);
-        });
-    } catch(e){
-      console.log(e)
-      setTransactionStatus(0);
-    }
-  }
   React.useEffect(() => {
     window.navigator.geolocation.getCurrentPosition(function(position) {
       console.log(position);
@@ -162,18 +168,6 @@ function App() {
   }, []);
 
   React.useEffect(() => {
-    if(tax[0] == 0){
-      setTaxWallet();
-    }
-  }, [tax])
-
-  React.useEffect(() => {
-    if(!transactionStatus){
-      setDeployedTokenAddress(undefined);
-    }
-  }, [transactionStatus])
-
-  React.useEffect(() => {
     if(web3React.account){
       setWalletConnected(1);
       setNetworkChain(web3React.chainId);
@@ -184,52 +178,11 @@ function App() {
   }, [web3React.account]);
 
   React.useEffect(() => {
-    try {
-    if(tax == 0){
-      if(tokenName.length > 0 & tokenSymbol.length > 0 & tokenSupply > 0 & 
-        (
-          tokenDecimals == '0' ||
-          tokenDecimals == '3' ||
-          tokenDecimals == '6' ||
-          tokenDecimals == '9' ||
-          tokenDecimals == '12' ||
-          tokenDecimals == '15' ||
-          tokenDecimals == '18'
-        )
-        ){
-        setReady(1);
-      } else {
-        setReady(0);
-      }
-    } else {
-      if(tokenName.length > 0 & tokenSymbol.length > 0 & tokenSupply > 0 & 
-        (
-          tokenDecimals == '0' ||
-          tokenDecimals == '3' ||
-          tokenDecimals == '6' ||
-          tokenDecimals == '9' ||
-          tokenDecimals == '12' ||
-          tokenDecimals == '15' ||
-          tokenDecimals == '18'
-        ) &
-        web3.utils.isAddress(taxWallet) & taxWallet != null
-        ){
-        setReady(1);
-      } else {
-        setReady(0);
-      }
-    }
-  } catch(e){
-    
-  }
-  }, [tokenName, tokenSymbol, tokenSupply, tokenDecimals, taxWallet, tax]);
-
-  React.useEffect(() => {
     console.log(bypassWeb3);
     console.log('bypassWeb3 clicked');
   }, [bypassWeb3]);
 
-  if(!userLocationLoaded){
+  if(!currentNftData){
     return <LoadingInit geoLocationDenied={geoLocationDenied}/>;
   }
   return (
@@ -254,7 +207,7 @@ function App() {
               <Feed />
             </Route>
             <Route default path="/">
-              <MapBox userLat={userLat} userLong={userLong}/>
+              <MapBox userLat={userLat} userLong={userLong} nftData={currentNftData}/>
             </Route>
           </Switch>
       </Body>
