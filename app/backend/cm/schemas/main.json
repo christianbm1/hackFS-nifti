@@ -1,0 +1,11 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "NiftiDb",
+    "type": "object",
+    "properties": {
+      "data": { "type": "array" }
+    },
+    "required": [
+      "data"
+    ]
+}

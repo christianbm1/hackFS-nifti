@@ -1,0 +1,583 @@
+[
+    {
+        "name":"New York City",
+        "latitude": 40.7166638,
+        "longtitude": -74.0
+    },
+    {
+        "name":"69th Regiment Armory",
+        "latitude": 40.741648,
+        "longtitude": -73.983607
+    },
+    {
+        "name":"Admiral David Glasgow Farragut Gravesite",
+        "latitude": 40.892165,
+        "longtitude": -73.86586
+    },
+    {
+        "name":"African Burial Ground",
+        "latitude": 40.714558,
+        "longtitude": -74.004384
+    },
+    {
+        "name":"Ambrose (lightship)",
+        "latitude": 40.704844,
+        "longtitude": -74.002467
+    },
+    {
+        "name":"American Stock Exchange",
+        "latitude": 40.709,
+        "longtitude": -74.0126
+    },
+    {
+        "name":"Louis Armstrong House",
+        "latitude": 40.754556,
+        "longtitude": -73.861557
+    },
+    {
+        "name":"Chester A. Arthur House",
+        "latitude": 40.74279,
+        "longtitude": -73.982196
+    },
+    {
+        "name":"Alice Austen House",
+        "latitude": 40.615129,
+        "longtitude": -74.062952
+    },
+    {
+        "name":"Bartow-Pell Mansion",
+        "latitude": 40.871748,
+        "longtitude": -73.805578
+    },
+    {
+        "name":"Bayard-Condict Building",
+        "latitude": 40.7263,
+        "longtitude": -73.9956
+    },
+    {
+        "name":"Bell Laboratories Building",
+        "latitude": 40.736852,
+        "longtitude": -74.009871
+    },
+    {
+        "name":"Brooklyn Bridge",
+        "latitude": 40.706344,
+        "longtitude": -73.997439
+    },
+    {
+        "name":"Brooklyn Heights Historic District",
+        "latitude": 40.696667,
+        "longtitude": -73.996667
+    },
+    {
+        "name":"Brooklyn Historical Society Building",
+        "latitude": 40.694761,
+        "longtitude": -73.992794
+    },
+    {
+        "name":"Ralph Johnson Bunche House",
+        "latitude": 40.70646,
+        "longtitude": -73.836998
+    }
+    ,
+    {
+        "name":"Carnegie Hall",
+        "latitude": 40.764944,
+        "longtitude": -73.980139
+    },
+    {
+        "name":"Andrew Carnegie Mansion",
+        "latitude": 40.784421,
+        "longtitude": -73.95789
+    },
+    {
+        "name":"Central Park",
+        "latitude": 40.781944,
+        "longtitude": -73.966111
+    },
+    {
+        "name":"Central Synagogue",
+        "latitude": 40.759592,
+        "longtitude": -73.970473
+    },
+    {
+        "name":"Chamber of Commerce Building",
+        "latitude": 40.709434,
+        "longtitude": -74.009871
+    },
+    {
+        "name":"Chrysler Building",
+        "latitude": 40.7517,
+        "longtitude": -73.9753
+    },
+    {
+        "name":"Church of the Ascension",
+        "latitude": 40.733647,
+        "longtitude": -73.995492
+    },
+    {
+        "name":"City Hall",
+        "latitude": 40.7127,
+        "longtitude": -74.0059
+    },
+    {
+        "name":"Conference House",
+        "latitude": 40.503072,
+        "longtitude": -74.253159
+    },
+    {
+        "name":"Will Marion Cook House",
+        "latitude": 40.818096,
+        "longtitude": -73.942924
+    },
+    {
+        "name":"Cooper Union",
+        "latitude": 40.729405,
+        "longtitude": -73.990417
+    },
+    {
+        "name":"Daily News Building",
+        "latitude": 40.749544,
+        "longtitude": -73.973492
+    },
+    {
+        "name":"Dakota Apartments",
+        "latitude": 40.776642,
+        "longtitude": -73.976269
+    },
+    {
+        "name":"Dyckman House",
+        "latitude": 40.8674,
+        "longtitude": -73.9233
+    },
+    {
+        "name":"Eldridge Street Synagogue",
+        "latitude": 40.715007,
+        "longtitude": -73.993982
+    },
+    {
+        "name":"Duke Ellington House",
+        "latitude": 40.832269,
+        "longtitude": -73.94096
+    },
+    {
+        "name":"Empire State Building",
+        "latitude": 40.748433,
+        "longtitude": -73.985694
+    },
+    {
+        "name":"Equitable Building",
+        "latitude": 40.709722,
+        "longtitude": -74.011111
+    },
+    {
+        "name":"Hamilton Fish House",
+        "latitude": 40.730052,
+        "longtitude": -73.988583
+    },
+    {
+        "name":"Flatiron Building",
+        "latitude": 40.741111,
+        "longtitude": -73.989722
+    },
+    {
+        "name":"Founder's Hall, The Rockefeller University",
+        "latitude": 40.762471,
+        "longtitude": -73.955074
+    },
+    {
+        "name":"The Frick Collection and Frick Art Reference Library Building",
+        "latitude": 40.771261,
+        "longtitude": -73.967241
+    },
+    {
+        "name":"Governors Island",
+        "latitude": 40.691389,
+        "longtitude": -74.016111
+    },
+    {
+        "name":"Grace Church",
+        "latitude": 40.731667,
+        "longtitude": -73.991944
+    },
+    {
+        "name":"Grand Central Terminal",
+        "latitude": 40.7528,
+        "longtitude": -73.976522
+    },
+    {
+        "name":"Green-Wood Cemetery",
+        "latitude": 40.6522,
+        "longtitude":-73.9911
+    },
+    {
+        "name":"Hamilton Grange National Memorial",
+        "latitude": 40.821389,
+        "longtitude":-73.947222
+    },
+    {
+        "name":"Solomon R. Guggenheim Museum",
+        "latitude": 40.782883,
+        "longtitude":-73.958992
+    },
+    {
+        "name":"Henry Street Settlement and Neighborhood Playhouse",
+        "latitude": 40.713889,
+        "longtitude":-73.985278
+    },
+    {
+        "name":"Matthew Henson Residence",
+        "latitude": 40.825444,
+        "longtitude":-73.93875
+    },
+    {
+        "name":"Hispanic Society of America",
+        "latitude": 40.833521,
+        "longtitude":-73.946514
+    },
+    {
+        "name":"Holland Tunnel",
+        "latitude": 40.7275,
+        "longtitude":-74.021389
+    },
+    {
+        "name":"USS Intrepid",
+        "latitude": 40.7648,
+        "longtitude":-74.001
+    },
+    {
+        "name":"James Weldon Johnson Residence",
+        "latitude": 40.815278,
+        "longtitude":-73.943056
+    },
+    {
+        "name":"King Manor",
+        "latitude": 40.703021,
+        "longtitude":-73.80376
+    },
+    {
+        "name":"Lettie G. Howard",
+        "latitude": 40.706111,
+        "longtitude":-74.003333
+    },
+    {
+        "name":"orillard Snuff Mill ",
+        "latitude": 40.859681,
+        "longtitude":-73.876174
+    },
+    {
+        "name":"Low Memorial Library",
+        "latitude": 40.80826,
+        "longtitude":-73.96188
+    },
+    {
+        "name":"R. H. Macy and Company Store (Macy's)",
+        "latitude":  40.750278,
+        "longtitude":-73.988333
+    },
+    {
+        "name":"McGraw Hill Building",
+        "latitude":  40.757222,
+        "longtitude":-73.991111
+    },
+    {
+        "name":"Claude McKay Residence",
+        "latitude":  40.814167,
+        "longtitude":-73.94166
+    },
+    {
+        "name":"Metropolitan Life Insurance Company Tower",
+        "latitude":  40.74124,
+        "longtitude":-73.9874
+    },
+    {
+        "name":"Metropolitan Museum of Art",
+        "latitude":  40.77891,
+        "longtitude":-73.96367
+    },
+    {
+        "name":"J. Pierpont Morgan Library",
+        "latitude":  40.748803,
+        "longtitude":-73.981556
+    },
+    {
+        "name":"Morris-Jumel Mansion",
+        "latitude":  40.834528,
+        "longtitude":-73.938611
+    },
+    {
+        "name":"National City Bank Building",
+        "latitude":  40.706039,
+        "longtitude":-74.009174
+    },
+    {
+        "name":"New York Amsterdam News Building",
+        "latitude":  40.814944,
+        "longtitude":-73.94472
+    },
+    {
+        "name":"New York Botanical Garden",
+        "latitude":  40.863611,
+        "longtitude":-73.878333
+    },
+    {
+        "name":"New York Cotton Exchange",
+        "latitude":  40.704444,
+        "longtitude":-74.010167
+    },
+    {
+        "name":"New York Life Building",
+        "latitude":  40.742778,
+        "longtitude":-73.985556
+    },
+    {
+        "name":"New York Public Library",
+        "latitude":  40.753333,
+        "longtitude":-73.982222
+    },
+    {
+        "name":"New York Stock Exchange",
+        "latitude":  40.706833,
+        "longtitude":-74.011028
+    },
+    {
+        "name":"New York Studio School of Drawing, Painting and Sculpture",
+        "latitude":  40.73295,
+        "longtitude": -73.998306
+    },
+    {
+        "name":"New York Yacht Club",
+        "latitude":  40.755556,
+        "longtitude": -73.981556
+    },
+    {
+        "name":"Old Merchant's House",
+        "latitude":  40.7276,
+        "longtitude": -73.992386
+    },
+    {
+        "name":"Old Quaker Meeting House",
+        "latitude":  40.763028,
+        "longtitude": -73.830365
+    },
+    {
+        "name":"Philosophy Hall",
+        "latitude":  40.806111,
+        "longtitude": -73.9625
+    },
+    {
+        "name":"Players Club",
+        "latitude":  40.737503,
+        "longtitude": -73.987058
+    },
+    {
+        "name":"Plaza Hotel",
+        "latitude":  40.764712,
+        "longtitude": -73.974574
+    },
+    {
+        "name":"Plymouth Church of the Pilgrims",
+        "latitude":  40.699272,
+        "longtitude": -73.993556
+    },
+    {
+        "name":"Pupin Physics Laboratory, Columbia University",
+        "latitude":  40.810064,
+        "longtitude": -73.961533
+    },
+    {
+        "name":"Quarters A, Brooklyn Navy Yard",
+        "latitude":  40.702494,
+        "longtitude": -73.981114
+    },
+    {
+        "name":"Paul Robeson Home",
+        "latitude":  40.834361,
+        "longtitude": -73.938972
+    },
+    {
+        "name":"Jackie Robinson House",
+        "latitude":  40.648292,
+        "longtitude": -73.915081
+    },
+    {
+        "name":"Rockefeller Center",
+        "latitude":  40.758611,
+        "longtitude": -73.979167
+    },
+    {
+        "name":"Sailors' Snug Harbor",
+        "latitude":  40.6425,
+        "longtitude": -74.102778
+    },
+    {
+        "name":"St. Ann and the Holy Trinity Church",
+        "latitude":  40.694583,
+        "longtitude": -73.992975
+    },
+    {
+        "name":"St. George's Episcopal Church",
+        "latitude":  40.734397,
+        "longtitude": -73.984964
+    },
+    {
+        "name":"St. Patrick's Cathedral",
+        "latitude":  40.758611,
+        "longtitude": -73.976389
+    },
+    {
+        "name":"St. Paul's Chapel",
+        "latitude":  40.711394,
+        "longtitude": -74.009947
+    },
+    {
+        "name":"Margaret Sanger Clinic",
+        "latitude":  40.738056,
+        "longtitude": -73.994167
+    },
+    {
+        "name":"Schomburg Center for Research in Black Culture",
+        "latitude":  40.814444,
+        "longtitude": -73.941389
+    },
+    {
+        "name":"Gen. Winfield Scott House",
+        "latitude":  40.735,
+        "longtitude": -73.995833
+    },
+    {
+        "name":"Seventh Regiment Armory",
+        "latitude":  40.7675,
+        "longtitude": -73.966111
+    },
+    {
+        "name":"Harry F. Sinclair House",
+        "latitude":  40.77675,
+        "longtitude": -73.963611
+    },
+    {
+        "name":"Alfred E. Smith House",
+        "latitude":  40.713208,
+        "longtitude": -73.997962
+    },
+    {
+        "name":"SoHo-Cast Iron Historic District",
+        "latitude":  40.724315,
+        "longtitude": -74.001292
+    },
+    {
+        "name":"A. T. Stewart Company Store",
+        "latitude":  40.71425,
+        "longtitude": -74.006111
+    },
+    {
+        "name":"Stonewall",
+        "latitude":  40.733797,
+        "longtitude": -74.0021
+    },
+    {
+        "name":"St. Bartholomew's Church and Community House",
+        "latitude":  40.757222,
+        "longtitude": -73.973611
+    },
+    {
+        "name":"Surrogate's Court",
+        "latitude":  40.713511,
+        "longtitude": -74.004589
+    },
+    {
+        "name":"Tenement Building at 97 Orchard Street",
+        "latitude":  40.7185,
+        "longtitude": -73.990139
+    },
+    {
+        "name":"Third Judicial District Courthouse",
+        "latitude":  40.734722,
+        "longtitude": -73.999167
+    },
+    {
+        "name":"Tiffany and Company Building",
+        "latitude":  40.75,
+        "longtitude": -73.981306
+    },
+    {
+        "name":"Samuel J. Tilden House",
+        "latitude":  40.7375,
+        "longtitude": -73.987222
+    },
+    {
+        "name":"The Town Hall",
+        "latitude":  40.755986,
+        "longtitude": -73.984712
+    },
+    {
+        "name":"Triangle Shirtwaist Factory",
+        "latitude":  40.730011,
+        "longtitude": -73.995817
+    },
+    {
+        "name":"Trinity Church",
+        "latitude":  40.708056,
+        "longtitude": -74.012222
+    },
+    {
+        "name":"Old New York County Courthouse",
+        "latitude":  40.713167,
+        "longtitude": -74.006
+    },
+    {
+        "name":"Union Square",
+        "latitude":  40.735556,
+        "longtitude": -73.990556
+    },
+    {
+        "name":"United Charities Building",
+        "latitude":  40.739389,
+        "longtitude": -73.986389
+    },
+    {
+        "name":"United Workers Cooperatives",
+        "latitude":  40.866389,
+        "longtitude": -73.869722
+    },
+    {
+        "name":"U.S. Customhouse",
+        "latitude":  40.704294,
+        "longtitude": -74.013773
+    },
+    {
+        "name":"University Heights Campus (Bronx Community College of the City University of New York)",
+        "latitude":  40.857778,
+        "longtitude": -73.912222
+    },
+    {
+        "name":"Van Cortlandt House",
+        "latitude":  40.89,
+        "longtitude": -73.896389
+    },
+    {
+        "name":"Voorlezer's House",
+        "latitude":  40.571417,
+        "longtitude": -74.1475
+    },
+    {
+        "name":"Wards Point Archeological Site",
+        "latitude":  40.498889,
+        "longtitude": -74.251944
+    },
+    {
+        "name":"Woolworth Building",
+        "latitude":  40.712222,
+        "longtitude": -74.008056
+    },
+    {
+        "name":"Wyckoff House",
+        "latitude":  40.644342,
+        "longtitude": -73.920777
+    },
+    {
+        "name":"Wyckoff-Bennett Homestead",
+        "latitude":  40.610851,
+        "longtitude": -73.951265
+    }
+]
