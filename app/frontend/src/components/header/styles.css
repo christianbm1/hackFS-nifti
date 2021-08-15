@@ -8,3 +8,8 @@
     margin-bottom: 14px;
     height: 60px;
 }
+@media (min-width: 0px) and (max-width: 670px) {
+    .header {
+        display: none;
+    }
+}

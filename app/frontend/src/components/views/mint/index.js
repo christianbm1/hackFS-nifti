@@ -14,7 +14,30 @@ function SearchNetwork(chainId){
 
 function Web3Layer(props){
     let networkObj = SearchNetwork(props.networkChain);
-    console.log(networkObj);
+    let [fileToUpload, setFileToUpload] = React.useState(undefined);    
+    let [nftTitle, setNftTitle] = React.useState(undefined);
+    let [nftDesc, setNftDesc] = React.useState(undefined);
+    let [readyToMint, setReadyToMint] = React.useState(0);
+
+    async function uploadFile(){
+        props.saveNFT("test", "this is a test", fileToUpload);
+        console.log(fileToUpload);
+    }
+
+    React.useEffect(() => {
+        if(nftTitle != undefined && nftTitle != '' &&
+            nftDesc != undefined && nftDesc != '' &&
+            fileToUpload !==undefined){
+            
+            setReadyToMint(1);
+        } else {
+            setReadyToMint(0);
+        }
+    }, [nftTitle, nftDesc, fileToUpload])
+
+    function mintNft(){
+        console.log('minting');
+    }
     return(
         <React.Fragment>
             <div className='web3layer'>
@@ -49,18 +72,24 @@ function Web3Layer(props){
                 <div className='media-container'>
                     <div className='nft-title'>
                         <label>Title</label>
-                        <input />
+                        <input onChange={(e) => setNftTitle(e.target.value)}/>
                     </div>
                     <div className='nft-desc'>
                         <label>Description</label>
-                        <textarea />
+                        <textarea onChange={(e) => setNftDesc(e.target.value)}/>
                     </div>
                     <div className='nft-file'>
-                        <button>Upload Media</button>
+                        <input type="file" onChange={(e) => setFileToUpload(e.target.files[0])} />
+                        {/*<button onClick={uploadFile}>Upload Media</button>*/}
                     </div>
                     <div className='nft-mint'>
-                        <button><i class="far fa-thumbs-up"></i></button>
-                        <span>save</span>
+                        <button 
+                            disabled={readyToMint ? '' : 'disabled'} 
+                            onClick={mintNft}
+                        >
+                            <i class="far fa-thumbs-up"></i>
+                        </button>
+                        <span>Mint!</span>
                     </div>
                 </div>
             </div>
@@ -112,6 +141,7 @@ export default function Mint(props){
                 networkChain={props.networkChain}
                 userLat={props.userLat}
                 userLong={props.userLong}
+                saveNFT={props.saveNFT}
             /> : null}
         </div>
     )

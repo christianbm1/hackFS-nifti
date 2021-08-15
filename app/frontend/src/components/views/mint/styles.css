@@ -86,11 +86,15 @@
     box-shadow: 1px 1px 2px 1px #ccc;
 }
 
+.nft-file > input {
+    padding: 2%;
+    margin-bottom: 5px;
+}
 .nft-file > button {
-    padding: 0px;
+    padding: 0;
     color: white;
     background-color: #283845;
-    height: 40px;
+    height: 30px;
     width: 150px;
     box-shadow: 1px 1px 3px 1px black;
     font-weight: bold;
@@ -109,6 +113,10 @@
     box-shadow: 1px 1px 3px 1px #283845;
     font-weight: bold;
     border-radius: 5px;
+}
+.nft-mint > button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
 }
 .nft-mint > button > * {
     font-size: 25px;
@@ -131,8 +139,8 @@
     padding: 2px;
 }
 .mint-container > .web3layer > .media-container > div {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;

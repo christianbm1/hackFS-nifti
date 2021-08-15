@@ -8,8 +8,6 @@
  */
 import { RequestFlowBuilder } from '@fluencelabs/fluence/dist/api.unstable';
 
-
-
 export async function test(client, node, service_id, dataIn, current_lat, current_long, distance, config) {
     let request;
     config = config || {};
