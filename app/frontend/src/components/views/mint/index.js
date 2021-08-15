@@ -37,6 +37,7 @@ function Web3Layer(props){
 
     function mintNft(){
         console.log('minting');
+        props.saveNFT(nftTitle, nftDesc, fileToUpload);
     }
     return(
         <React.Fragment>

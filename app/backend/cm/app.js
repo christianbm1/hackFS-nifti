@@ -122,7 +122,8 @@ async function run() {
     });
     */
 
-    app.get('/crtRec', async (req, res) => {
+    app.post('/crtRec', async (req, res) => {
+        console.log(req);
         /*let recSchemaLd = await TileDocument.load(ceramic, "kjzl6cwe1jw14azx5fej1eq6dsu0j6lo0mh5eiqrt0eo768oq9z1t4e8r2om9zq");
         const rec = await TileDocument.create(ceramic, {
            tag: 'hello',
@@ -136,15 +137,15 @@ async function run() {
           */
 
 
-          console.log(`Record ID: ${rec.id.toString()}`);
+          //console.log(`Record ID: ${rec.id.toString()}`);
           //x = await UpdateDB(rec.id.toString());
-          console.log(x);
-          if(x){
-            res.sendStatus(200);
+          //console.log(x);
+          /*if(x){
+            
           } else {
             res.sendStatus(500);
-          }
-          
+          }*/
+          res.sendStatus(200);
     });
 
     /* load mock data

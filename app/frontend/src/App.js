@@ -17,7 +17,7 @@ import MapBox from './components/views/map/index.js';
 import Feed from './components/views/feed/index.js';
 import Mint from './components/views/mint/index.js';
 import Notification from './components/notifications/notifications.js';
-
+import factoryContract from './contracts/NFTFactory.json';
 //Web3
 import { Web3ReactProvider, useWeb3React } from '@web3-react/core';
 import { Web3Provider } from '@ethersproject/providers';
@@ -27,7 +27,6 @@ import Web3 from 'web3';
 //Ceramic
 import CeramicClient from '@ceramicnetwork/http-client';
 import { TileDocument } from '@ceramicnetwork/stream-tile';
-import factoryContract from './contracts/Factory.json';
 
 //Fluece
 import { createClient } from "@fluencelabs/fluence";
@@ -44,7 +43,7 @@ const CERAMIC_API_URL = "https://ceramic-clay.3boxlabs.com/";
 const ceramic = new CeramicClient(CERAMIC_API_URL);
 
 //const streamId = "kjzl6cwe1jw148d384e00juj0sho9r5er8ju462545afehveirvzjbraxkjrxwi";
-import factoryContract from './contracts/NFTFactory.json';
+
 const nftContractAddress = '0xD2386f2818FA8375b93cbd7f80F81c59f995e8a7';
 
 const injectedConnector = new InjectedConnector({
@@ -107,7 +106,7 @@ function App() {
   const web3React = useWeb3React();
   const web3 = new Web3(Web3.givenProvider);
   let [walletConnected, setWalletConnected] = React.useState(0);
-  let [contract, setContract] = React.useState(new web3.eth.Contract(factoryContract.abi, proxyAddress));
+  let [contract, setContract] = React.useState(new web3.eth.Contract(factoryContract.abi, nftContractAddress));
   let [transactionStatus, setTransactionStatus] = React.useState();
   let [userLat, setUserLat] = React.useState(undefined);
   let [userLong, setUserLong] = React.useState(undefined);
@@ -118,29 +117,49 @@ function App() {
   let [currentNftData, setCurrentNftData] = React.useState(undefined);
   let [nftDeployedAddress, setNftDeployedAddress] = React.useState(undefined);
 
+  function saveCoordsNft(){
+    fetch('https://9e051238b990.ngrok.io/crtRec', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userLat: userLat,
+        userLong: userLong,
+        uri: 'uri'
+      })
+    });
+  }
 
-  async function mintNFT(){
+  async function mintNFT(name, desc, file){
+    let uri = await saveNFT(name, desc, file);
+    //console.log(uri.url);
+
     try {
+      saveCoordsNft(uri);
       setTransactionStatus(1);
       await contract.methods.mintNFT(
-        ).then((receipt) => {
-          setNftDeployedAddress(receipt.events.['0'].address);
+        web3React.account,
+        uri.url
+        ).send({ from:web3React.account, gasLimit: 2000000}).then((receipt) => {
+          console.log(receipt);
+          //setNftDeployedAddress(receipt.evets.['0'].address)
           setTransactionStatus(9);
         });
     } catch(e){
-      console.log(e)
+      console.log(e);
       setTransactionStatus(0);
     }
   }
   
   async function saveNFT(name, desc, file){
-    console.log(file.type);
     let metadata = await client.store({
       name: name,
       description: desc,
       image: new File([file], file.name, { type: file.type })
     });
-    console.log(metadata);
+    return metadata;
   }
   async function getData(data){
       console.log(data);
@@ -229,8 +248,10 @@ function App() {
   return (
     <Router>
     <div className="App">
+    
       <Header web3={web3React} connectWallet={connectWallet}/>
       <Body >
+      <button onClick={saveCoordsNft}>ssss</button>
         <Switch>
             <Route path="/mint">
               <Mint 
@@ -242,7 +263,7 @@ function App() {
                 userLat={userLat}
                 userLong={userLong}
                 networkChain={networkChain}
-                saveNFT={saveNFT}
+                saveNFT={mintNFT}
               />
             </Route>
             <Route path="/feed">
@@ -253,7 +274,9 @@ function App() {
             </Route>
           </Switch>
       </Body>
+      
       <Footer />
+      
       <div className='help'>
         <a href='https://www.notion.so/NiFTi-FAQs-df2f9f05550143d0ac2bf71dfb7d5b05' target='_blank'><i class="fas fa-question" style={{padding: '15px', fontSize: '20px'}} /></a>
       </div>
