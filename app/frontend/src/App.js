@@ -44,7 +44,7 @@ const ceramic = new CeramicClient(CERAMIC_API_URL);
 
 //const streamId = "kjzl6cwe1jw148d384e00juj0sho9r5er8ju462545afehveirvzjbraxkjrxwi";
 
-const nftContractAddress = '0xD2386f2818FA8375b93cbd7f80F81c59f995e8a7';
+const nftContractAddress = '0x0425dDdc40d73E485ecd5aC25bd787b588f6f109';
 
 const injectedConnector = new InjectedConnector({
   supportedChainIds: [
@@ -54,6 +54,7 @@ const injectedConnector = new InjectedConnector({
     5, // Goerli
     42, // Kovan
     137, // Matic Mainnet
+    80001, //Mumbai
   ],
 });
 

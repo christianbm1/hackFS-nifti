@@ -40,6 +40,10 @@ describe("Inital Test", function(){
       expect(await nft.connect(addr1).transferNFT(addr1.address, addr2.address, 2)).to.be.an('object');
     });
 
+    it('Read token URI', async function(){
+      console.log(await nft.connect(addr1).tokenURI(1));
+      expect(await nft.connect(addr1).tokenURI(2)).to.be.an('object');
+    });
 
 
     /*it('all owners function', async function(){
