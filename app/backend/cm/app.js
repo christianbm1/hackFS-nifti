@@ -1,5 +1,12 @@
 require("dotenv").config();
-const express = require('express')
+
+const request = require('request');
+const app = require('express')();
+const server = require('http').Server(app);
+const bodyParser = require('body-parser');
+var cors = require('cors')  
+
+
 const Ceramic = require("@ceramicnetwork/http-client").default;
 const ceramic = new Ceramic('https://ceramic-clay.3boxlabs.com');
 const ThreeIdResolver = require("@ceramicnetwork/3id-did-resolver").default;
@@ -15,8 +22,11 @@ const recSchema = require("./schemas/records.json");
 
 const Web3Storage = require('web3.storage').default;
 
-const app = express();
-const port = 3000
+const port = 5000;
+
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
 
 function getAccessToken() {
     return process.env.WEB3STORAGE_TOKEN
@@ -97,7 +107,8 @@ async function run() {
         res.send('Hello World! - NiFTi')
     })
 
-    /* Create a schema for each record
+    /* Create a schema for each record */
+    /*
     app.get('/recordSchema', async (req, res) => {
         const metadata = {
             controllers: [ceramic.did.id] 
@@ -121,31 +132,56 @@ async function run() {
           res.send(db.id.toString());
     });
     */
+    /*
+        userLat:number
+        userLong:number
+        metadata_uri:string | url
+        content_uri:string | url
+        chainId:number
+        contractAddress:string
+        ownerAddress:string
+        tokenId:number
+        category:array
+        nsfw:boolean
+        stat_interaction:number
+        stat_impressions:number
 
+    */ 
     app.post('/crtRec', async (req, res) => {
-        console.log(req);
-        /*let recSchemaLd = await TileDocument.load(ceramic, "kjzl6cwe1jw14azx5fej1eq6dsu0j6lo0mh5eiqrt0eo768oq9z1t4e8r2om9zq");
+        //console.log(req.body);
+        
+        let recSchemaLd = await TileDocument.load(ceramic, "kjzl6cwe1jw148i39genxu3u8s0xoretrry2hg9p5kem5swrp8wqi4cp20wnpvq");
         const rec = await TileDocument.create(ceramic, {
-           tag: 'hello',
-           lat: 40.7166638,
-           long: -74.0,
+            lat: req.body.lat,
+            long: req.body.long,
+            metadata_uri: req.body.metadata_url,
+            content_cid: req.body.content_cid,
+            content_filename: req.body.content_filename,
+            chainId: req.body.chainId,
+            contractAddress: req.body.nftContractAddress,
+            ownerAddress: req.body.ownerAddress,
+            tokenId: req.body.tokenId,
+            category: [req.body.category],
+            nsfw: req.body.nsfw ? true : false,
+            contentType: req.body.content_type,
+            name: req.body.name,
+            desc: req.body.desc,
+            stat_interaction: 0,
+            stat_impressions: 0,
+            txnHash: req.body.txnHash
           }, {
             controllers: [ceramic.did.id],
             family: 'niftidb',
             schema: recSchemaLd.commitId.toString(),
           });
-          */
-
-
-          //console.log(`Record ID: ${rec.id.toString()}`);
-          //x = await UpdateDB(rec.id.toString());
-          //console.log(x);
-          /*if(x){
-            
+          console.log(`Record ID: ${rec.id.toString()}`);
+          x = await UpdateDB(rec.id.toString());
+          console.log(x);
+          if(x){
+            res.sendStatus(200);
           } else {
             res.sendStatus(500);
-          }*/
-          res.sendStatus(200);
+          }          
     });
 
     /* load mock data
@@ -170,10 +206,9 @@ async function run() {
         res.send(JSON.stringify(out));
     });
     */
-    
-    app.listen(port, () => {
+    server.listen(port,() => {
         console.log(`Using ${ceramic.did._id}`);
-        console.log(`Example app listening at http://localhost:${port}`)
+        console.log(`Listening on port ${port} . . .`);
     });
 
     
@@ -181,6 +216,6 @@ async function run() {
 
 run().catch(console.error);
 
-//record schema: kjzl6cwe1jw14azx5fej1eq6dsu0j6lo0mh5eiqrt0eo768oq9z1t4e8r2om9zq
+//record schema: kjzl6cwe1jw148i39genxu3u8s0xoretrry2hg9p5kem5swrp8wqi4cp20wnpvq
 //db schema: kjzl6cwe1jw146liocrczytyeesm23asu89rtyl6f7e7csdal3d7bycrq7e5zo7
 //db streamid: kjzl6cwe1jw148d384e00juj0sho9r5er8ju462545afehveirvzjbraxkjrxwi

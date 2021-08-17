@@ -17,13 +17,16 @@ function Web3Layer(props){
     let [fileToUpload, setFileToUpload] = React.useState(undefined);    
     let [nftTitle, setNftTitle] = React.useState(undefined);
     let [nftDesc, setNftDesc] = React.useState(undefined);
+    let [nftNSFW, setNftNSFW] = React.useState(0);
     let [readyToMint, setReadyToMint] = React.useState(0);
 
     async function uploadFile(){
         props.saveNFT("test", "this is a test", fileToUpload);
         console.log(fileToUpload);
     }
-
+    React.useEffect(() => {
+        console.log(nftNSFW);
+    }, [nftNSFW])
     React.useEffect(() => {
         if(nftTitle != undefined && nftTitle != '' &&
             nftDesc != undefined && nftDesc != '' &&
@@ -36,8 +39,7 @@ function Web3Layer(props){
     }, [nftTitle, nftDesc, fileToUpload])
 
     function mintNft(){
-        console.log('minting');
-        props.saveNFT(nftTitle, nftDesc, fileToUpload);
+        props.saveNFT(nftTitle, nftDesc, fileToUpload, nftNSFW);
     }
     return(
         <React.Fragment>
@@ -82,6 +84,13 @@ function Web3Layer(props){
                     <div className='nft-file'>
                         <input type="file" onChange={(e) => setFileToUpload(e.target.files[0])} />
                         {/*<button onClick={uploadFile}>Upload Media</button>*/}
+                    </div>
+                    <div>
+                        <label>
+                        <input type="checkbox" onClick={() => setNftNSFW(nftNSFW ? 0 : 1)}/>
+                        <span>Is this content NSFW?</span>
+                        </label>
+                        
                     </div>
                     <div className='nft-mint'>
                         <button 

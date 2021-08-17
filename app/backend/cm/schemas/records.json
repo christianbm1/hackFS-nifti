@@ -3,13 +3,37 @@
     "title": "Records",
     "type": "object",
     "properties": {
-      "tag": { "type": "string" },
-      "lat": { "type": "number"},
-      "long": { "type": "number"}
+      "lat": { "type": "number"}, 
+      "long": { "type": "number"},
+      "metadata_uri": { "type": "string"},
+      "content_cid": { "type": "string"},
+      "content_filename": { "type": "string"},
+      "chainId": { "type": "number"},
+      "contractAddress": { "type": "string"},
+      "ownerAddress": { "type": "string"},
+      "tokenId": { "type": "number"},
+      "category": { "type": "array"},
+      "nsfw": { "type": "boolean"},
+      "stat_interaction": { "type": "number"},
+      "stat_impressions": { "type": "number"},
+      "contentType": { "type": "string"},
+      "name": { "type": "string"},
+      "desc": { "type": "string"},
+      "txnHash": { "type": "string"}
     },
     "required": [
-      "tag",
+      "stat_interaction",
+      "stat_impressions",
+      "nsfw",
+      "category",
+      "tokenId",
+      "metadata_uri",
+      "content_cid",
+      "content_filename",
       "lat",
-      "long"
+      "long",
+      "contentType",
+      "name",
+      "desc"
     ]
 }

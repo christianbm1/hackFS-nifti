@@ -22,7 +22,10 @@
     "@stablelib/random": "^1.0.1",
     "3id-did-provider": "^1.1.0",
     "dids": "^2.4.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
+    "request": "^2.88.2",
     "key-did-provider-ed25519": "^1.1.0",
     "node-fetch": "^2.6.1",
     "web3.storage": "^3.2.0"

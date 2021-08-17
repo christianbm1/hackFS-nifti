@@ -59,30 +59,23 @@ const injectedConnector = new InjectedConnector({
 });
 
 
-function ListItem(props){
-  return(
-    <li className={`${props.vertical ? 'item itemv' : 'item itemh'}`}>
-      <div className='item-left'>
-        {props.label}:
-      </div>
-      <div className='item-right'>
-        {props.children}
-      </div>
-    </li>
-  );
-}
-
 function NotificationSwitch(control, stateChageFn){
   switch(control){
       case 1:
         return (
-          <Notification position='bottom-right' message='Pending' block='1'>
+          <Notification position='bottom-right' message='Saving Data' block='1'>
+            <BounceLoader loading={1}  />
+          </Notification>
+        )
+      case 2:
+        return (
+          <Notification position='bottom-right' message='Minting NFT' block='1'>
             <BounceLoader loading={1}  />
           </Notification>
         )
       case 0:
         return (
-          <Notification position='bottom-right' message='Txn Fail' note='1' onClick={() => stateChageFn()}>
+          <Notification position='bottom-right' message='Mint Failed' note='1' onClick={() => stateChageFn()}>
             <span>
               <i class="fas fa-times" style={{color: 'red'}}/>
             </span>
@@ -90,12 +83,20 @@ function NotificationSwitch(control, stateChageFn){
         )
       case 9:
         return (
-          <Notification position='bottom-right' message='Success' note='1' onClick={() => stateChageFn()}>
+          <Notification position='bottom-right' message='Success!' note='1' onClick={() => stateChageFn()}>
           <span>
             <i class="fas fa-check" style={{color: 'green'}}/>
           </span>
           </Notification>
         )
+        case 10:
+          return (
+            <Notification position='bottom-right' message='Wrong Network' note='1' onClick={() => stateChageFn()}>
+              <span>
+                <i class="fas fa-times" style={{color: 'red'}}/>
+              </span>
+            </Notification>
+          )
       default :
         return (
           ''
@@ -107,7 +108,8 @@ function App() {
   const web3React = useWeb3React();
   const web3 = new Web3(Web3.givenProvider);
   let [walletConnected, setWalletConnected] = React.useState(0);
-  let [contract, setContract] = React.useState(new web3.eth.Contract(factoryContract.abi, nftContractAddress));
+  let [contract, setContract] = React.useState(undefined);
+  let [chainIdCompatability, setChainIdCompatability] = React.useState(undefined);
   let [transactionStatus, setTransactionStatus] = React.useState();
   let [userLat, setUserLat] = React.useState(undefined);
   let [userLong, setUserLong] = React.useState(undefined);
@@ -116,54 +118,95 @@ function App() {
   let [bypassWeb3, setBypassWeb3] = React.useState(0);
   let [networkChain, setNetworkChain] = React.useState(0);
   let [currentNftData, setCurrentNftData] = React.useState(undefined);
-  let [nftDeployedAddress, setNftDeployedAddress] = React.useState(undefined);
 
-  function saveCoordsNft(){
-    fetch('https://9e051238b990.ngrok.io/crtRec', {
+  async function getMetaDataUrl(url){
+    fetch(url)
+    .then(response => response.json())
+    .then((jsonData) => {
+      return jsonData;
+    })
+    .catch((error) => {
+      console.error(error)
+    });
+  }
+  async function saveCoordsNft(uLat, uLong, metadata_url, content_cid, content_filename, file_type, name, desc, tokenId, txnHash, nsfw){
+    fetch('https://04178543ba7d.ngrok.io/crtRec', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        userLat: userLat,
-        userLong: userLong,
-        uri: 'uri'
+        name: name,
+        desc: desc,
+        lat: uLat,
+        long: uLong,
+        metadata_url: metadata_url,
+        content_cid: content_cid,
+        content_filename: content_filename,
+        content_type: file_type,
+        nftContractAddress: nftContractAddress,
+        ownerAddress: web3React.account,
+        chainId: networkChain,
+        tokenId: parseInt(tokenId),
+        category:1,
+        txnHash:txnHash,
+        nsfw: nsfw
       })
-    });
+    })
+    .then(response => response.json())
+    .then(() => {
+      loadCeramicStream();
+      setTransactionStatus(9);
+    })
+    .catch((error) => {
+      console.error(error)
+    });;
   }
-
-  async function mintNFT(name, desc, file){
-    let uri = await saveNFT(name, desc, file);
-    //console.log(uri.url);
-
+  async function mintNFT(name, desc, file, nsfw){
+    let metadata = await saveNFT(name, desc, file);
+    console.log(metadata[0]);
+    console.log(metadata[0].data.image.pathname);
+    //let content_url = await getMetaDataUrl(metadata[0].url);
     try {
-      saveCoordsNft(uri);
-      setTransactionStatus(1);
+      setTransactionStatus(2);
       await contract.methods.mintNFT(
         web3React.account,
-        uri.url
+        metadata[0].url
         ).send({ from:web3React.account, gasLimit: 2000000}).then((receipt) => {
-          console.log(receipt);
-          //setNftDeployedAddress(receipt.evets.['0'].address)
-          setTransactionStatus(9);
+          saveCoordsNft(
+            userLat, 
+            userLong, 
+            metadata[0].url, 
+            metadata[0].data.image.pathname.split('//')[1].split('/')[0],
+            metadata[0].data.image.pathname.split('//')[1].split('/')[1], 
+            metadata[3], 
+            metadata[1], 
+            metadata[2],
+            receipt.events.Transfer.returnValues.tokenId,
+            receipt.transactionHash,
+            nsfw
+          );
+          //setNftDeployedAddress()
         });
     } catch(e){
       console.log(e);
       setTransactionStatus(0);
     }
-  }
-  
+  };
   async function saveNFT(name, desc, file){
+    setTransactionStatus(1);
     let metadata = await client.store({
       name: name,
       description: desc,
       image: new File([file], file.name, { type: file.type })
     });
-    return metadata;
-  }
+    return [metadata, name, desc, file.type];
+  };
   async function getData(data){
       console.log(data);
+      console.log(userLat);
+      console.log(userLong);
       const client = await createClient(testNet[1]);
       
       let w = await test(client, 
@@ -177,41 +220,30 @@ function App() {
         );
       console.log(w);
       setCurrentNftData(w[0][0].result);
-
       await client.disconnect();
   };
-
   async function loadCeramicStream(){
     let out = []
     let db = await TileDocument.load(ceramic, "kjzl6cwe1jw149nt5bsoyni2pd74yoemp43k8g6kr789lebgklj3jjx2ps0qngv");
-    //const stream = await ceramic.loadStream(db);
     let streamData = await ceramic.multiQuery(db.content.data);
     let keys = Object.keys(streamData);
     keys.forEach(key => {
         out.push({...streamData[key].content, "key": key});
     });
-    /*let filteredD;
-    //filteredD = await getData(out);
-    if(filteredD !== undefined){
+    
+    if(out.length > 0){
+      let filteredD;
+      filteredD = await getData(out);
       setCurrentNftData(filteredD[0][0].result);
     } else {
       setCurrentNftData(out);
-    }*/
-    setCurrentNftData(out);
-  }
-
-  React.useEffect(async () => {
-    await loadCeramicStream();
-  }, []);
-
-  async function connectWallet(){
-    if(!walletConnected){
-      web3React.activate(injectedConnector);
-    } else {
-      web3React.deactivate();
     }
   }
-
+  React.useEffect(async () => {
+    if(userLat & userLong){
+      await loadCeramicStream();
+    }
+  }, [userLat, userLong]);
   React.useEffect(() => {
     window.navigator.geolocation.getCurrentPosition(function(position) {
       console.log(position);
@@ -220,38 +252,81 @@ function App() {
       setTimeout(() => setUserLocationLoaded(1), 5000);
     }, function(err){
         setGeoLocationDenied(1);
-      console.log(err);
     });
   }, []);
-
-  React.useEffect(() => {
-    if(web3React.account){
-      setWalletConnected(1);
-      setNetworkChain(web3React.chainId);
-    } else {
-      setWalletConnected(0);
-      setNetworkChain(0);
-    }
-  }, [web3React.account]);
 
   React.useEffect(() => {
     console.log(bypassWeb3);
     console.log('bypassWeb3 clicked');
   }, [bypassWeb3]);
 
-  if(!currentNftData){
+  async function connectWallet(){
+    setWalletConnected(0);
+    if(!walletConnected){
+      console.log('connect wallet')
+      web3React.activate(injectedConnector);
+    } else {
+      web3React.deactivate();
+    }
+  }
+
+  React.useEffect(() => {
+    if(web3React.account){
+      setContractToCorrectChain(web3React.chainId);
+      console.log(web3React);
+    } else {
+      setWalletConnected(0);
+      setNetworkChain(0);
+    }
+  }, [web3React.account]);
+
+  async function setContractToCorrectChain(chainId){
+    console.log(chainId);
+    switch(chainId){
+      /*case 0:
+        setChainIdCompatability(0);
+        setContract(undefined);*/
+      /*case 1:
+        setContract(new web3.eth.Contract(factoryContract.abi, nftContractAddress));*/
+      case 42: {
+        setContract(new web3.eth.Contract(factoryContract.abi, '0xd2386f2818fa8375b93cbd7f80f81c59f995e8a7'));
+        setWalletConnected(1);
+        setNetworkChain(chainId);
+        setChainIdCompatability(1);
+        console.log('kovan');
+        break;
+      }
+      /*case 137:
+          setContract(new web3.eth.Contract(factoryContract.abi, nftContractAddress));*/
+      case 80001: {
+        setContract(new web3.eth.Contract(factoryContract.abi, '0x0425dDdc40d73E485ecd5aC25bd787b588f6f109'));
+        setWalletConnected(1);
+        setNetworkChain(chainId);
+        setChainIdCompatability(1);
+        console.log('mumbai');
+        break;
+      }
+      default : {
+        setWalletConnected(0);
+        setNetworkChain(0);
+        setChainIdCompatability(0);
+        setContract(undefined);
+        web3React.deactivate();
+        console.log('default');
+        break;
+      }
+    }
+  }
+
+  if(userLocationLoaded == 0 || currentNftData == undefined){
     return <LoadingInit geoLocationDenied={geoLocationDenied}/>;
   }
-  /*<input type="file" onChange={this.onFileChange} />
-  <button onClick={this.onFileUpload}>
-  Upload!
-</button>*/
+
   return (
     <Router>
     <div className="App">
-    
       <Header web3={web3React} connectWallet={connectWallet}/>
-      <Body >
+      <Body>
         <Switch>
             <Route path="/mint">
               <Mint 
