@@ -19,7 +19,7 @@ function ImageTemplate(props){
         <div className='proxy-container'>
             <div className='media-container image'>
                 <div className='image-metadata'>
-                    <img src='http://www.coogfans.com/uploads/db5902/original/3X/8/1/81173237ffa580ef710b0862fdddaac163274db1.jpeg' />
+                    <img src={`https://${props.data.content_cid}.ipfs.dweb.link/${props.data.content_filename}` }/>
                 </div>
                 <div className='drawer-control' onClick={() => setDrawerActive(drawerActive ? 0 : 1)}>
                     <i class="fas fa-chevron-up"></i>
@@ -28,7 +28,7 @@ function ImageTemplate(props){
             <div className={`content-drawer ${drawerActive ? 'content-drawer-show content-drawer-animation-show ' : 'content-drawer-noshow content-drawer-animation-noshow'}`}>
                 <span className='media-stat-interact'>
                     <div className='metadata-title'>
-                        E   lmor fudg
+                       {props.data.name}
                     </div>
                     <div className='content-controls'>
                         <label onClick={() => console.log('clap')}>👏</label>
@@ -37,11 +37,7 @@ function ImageTemplate(props){
                 </span>
                 <div className='image-text-metadata'>
                     <div className='metadata-desc'>
-                    asdf wed saxfwef  asax aff bbb bbbb bbbbbbb. bbbb bbb bbb bbb bbb bbb
-                    asdf wed saxfwef  asax aff bbb bbbb bbbbbbb. bbbb bbb bbb bbb bbb bbb
-                    asdf wed saxfwef  asax aff bbb bbbb bbbbbbb. bbbb bbb bbb bbb bbb bbb
-                    asdf wed saxfwef  asax aff bbb bbbb bbbbbbb. bbbb bbb bbb bbb bbb bbb
-                    asdf wed saxfwef  asax aff bbb bbbb bbbbbbb. bbbb bbb bbb bbb bbb bbb
+                        {props.data.desc}
                     </div>
                 </div>
                 <div className='drawer-control' onClick={() => setDrawerActive(drawerActive ? 0 : 1)}>
@@ -129,12 +125,9 @@ function textTemplate(props){
 export default function Feed(props){
     return(
         <div className='feed-container container'>
-        {textTemplate()}
-        <ImageTemplate />
-        <VideoTemplate />
-        <ImageTemplate />
-        <ImageTemplate />
-        <ImageTemplate />
+        {
+            props.data.map((x) => <ImageTemplate data={x} />)
+        }
         </div>
     );
 }

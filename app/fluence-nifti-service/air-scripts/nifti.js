@@ -10,7 +10,7 @@ import { RequestFlowBuilder } from '@fluencelabs/fluence/dist/api.unstable';
 
 
 
-export async function test(client, node, service_id, dataIn, current_lat, current_long, distance, config) {
+export async function nifti_proximity_filter(client, node, service_id, dataIn, current_lat, current_long, distance, config) {
     let request;
     config = config || {};
     const promise = new Promise((resolve, reject) => {
@@ -47,7 +47,7 @@ export async function test(client, node, service_id, dataIn, current_lat, curren
     (xor
      (seq
       (call -relay- ("op" "noop") [])
-      (call node (service_id "price_getter") [dataIn current_lat current_long distance] $res)
+      (call node (service_id "proximity_filter") [dataIn current_lat current_long distance] $res)
      )
      (seq
       (call -relay- ("op" "noop") [])
@@ -91,7 +91,7 @@ h.on('getDataSrv', 'distance', () => {return distance;});
             })
             .handleScriptError(reject)
             .handleTimeout(() => {
-                reject('Request timed out for test');
+                reject('Request timed out for nifti_proximity_filter');
             })
         if(config.ttl) {
             r.withTTL(config.ttl)

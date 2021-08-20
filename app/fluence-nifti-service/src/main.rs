@@ -23,19 +23,31 @@ use geoutils::{Location, Distance};
 extern crate fstrings;
 extern crate geoutils;
 
-
-const METERS:f64 = 500.00;
-
 module_manifest!();
 
 pub fn main() {}
 
 #[marine]
 #[derive(Serialize, Deserialize, Debug, Clone)]
+
 pub struct Res {
     pub lat: f64,
     pub long: f64,
-    pub tag: String,
+    pub metadata_uri: String,
+    pub content_cid: String,
+    pub content_filename: String,
+    pub chain_id: u64,
+    pub contract_address: String,
+    pub owner_address: String,
+    pub token_id: u64,
+    pub category: Vec<u8>,
+    pub nsfw: bool,
+    pub content_type: String,
+    pub name: String,
+    pub desc: String,
+    pub txn_hash: String,
+    pub stat_interaction: u64,
+    pub stat_impressions: u64,
     pub key: String
 }
 
@@ -47,26 +59,20 @@ pub struct Result {
 }
 
 #[marine]
-pub fn check_location(my_lat: f64, my_long:f64, i_lat: f64, i_long:f64, dist:f64) -> bool {
+pub fn proximity_check(my_lat: f64, my_long:f64, i_lat: f64, i_long:f64, dist:f64) -> bool {
     let my_location = Location::new(my_lat, my_long);
     let item_location = Location::new(i_lat, i_long);
     return item_location.is_in_circle(&my_location, Distance::from_meters(dist)).unwrap();
 }
 
 #[marine]
-pub fn price_getter(dataIn: Vec<Res>, current_lat: f64, current_long: f64, distance: f64) -> Result {
+pub fn proximity_filter(data_in: Vec<Res>, current_lat: f64, current_long: f64, distance: f64) -> Result {
     //et testobj: Vec<Res> = serde_json::json!(&dataIn);
     let mut vec = Vec::<Res>::new();
-    for data in dataIn.iter() {
-        let clRes = data.clone();
-        if(check_location(current_lat, current_long, clRes.lat, clRes.long, distance)){
-            let x = Res {
-                lat: clRes.lat,
-                long: clRes.long,
-                tag: clRes.tag,
-                key: clRes.key
-            };
-            vec.push(x);
+    for data in data_in.iter() {
+        let cl_res = data.clone();
+        if proximity_check(current_lat, current_long, cl_res.lat, cl_res.long, distance) {
+            vec.push(cl_res);
         }
     }            
     Result {

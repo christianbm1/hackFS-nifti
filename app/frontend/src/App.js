@@ -31,7 +31,7 @@ import { TileDocument } from '@ceramicnetwork/stream-tile';
 //Fluece
 import { createClient } from "@fluencelabs/fluence";
 import { testNet } from "@fluencelabs/fluence-network-environment";
-import { test } from "./utils/fluence/compiled/nifti.js";
+import { nifti_proximity_filter } from "./utils/fluence/compiled/nifti.js";
 
 //Web3.Storage
 import { NFTStorage, File } from 'nft.storage';
@@ -154,14 +154,14 @@ function App() {
         nsfw: nsfw
       })
     })
-    .then(response => response.json())
-    .then(() => {
+    .then((response) => {
+      console.log(response);
       loadCeramicStream();
       setTransactionStatus(9);
     })
     .catch((error) => {
-      console.error(error)
-    });;
+      console.error(error);
+    });
   }
   async function mintNFT(name, desc, file, nsfw){
     let metadata = await saveNFT(name, desc, file);
@@ -204,21 +204,18 @@ function App() {
     return [metadata, name, desc, file.type];
   };
   async function getData(data){
-      console.log(data);
-      console.log(userLat);
-      console.log(userLong);
       const client = await createClient(testNet[1]);
       
-      let w = await test(client, 
+      let w = await nifti_proximity_filter(client, 
         "12D3KooWFEwNWcHqi9rtsmDhsYcDbRUCDXH84RC4FW6UfsFWaoHi", 
-        "3e4924f0-8a65-40d4-a743-7451eda9918d",
+        "fe706e05-d00c-4310-9c30-4415abb48ae9",
         data,
         userLat,
         userLong,
         1000.00,
         ""
         );
-      console.log(w);
+      //console.log(w);
       setCurrentNftData(w[0][0].result);
       await client.disconnect();
   };
@@ -232,9 +229,7 @@ function App() {
     });
     
     if(out.length > 0){
-      let filteredD;
-      filteredD = await getData(out);
-      setCurrentNftData(filteredD[0][0].result);
+      await getData(out);
     } else {
       setCurrentNftData(out);
     }
@@ -342,7 +337,7 @@ function App() {
               />
             </Route>
             <Route path="/feed">
-              <Feed />
+              <Feed data={currentNftData}/>
             </Route>
             <Route default path="/">
               <MapBox userLat={userLat} userLong={userLong} nftData={currentNftData}/>

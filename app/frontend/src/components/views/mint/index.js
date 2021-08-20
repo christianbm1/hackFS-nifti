@@ -19,6 +19,8 @@ function Web3Layer(props){
     let [nftDesc, setNftDesc] = React.useState(undefined);
     let [nftNSFW, setNftNSFW] = React.useState(0);
     let [readyToMint, setReadyToMint] = React.useState(0);
+    let [customLat, setCustomLat] = React.useState(undefined);
+    let [customLong, setCustomLong] = React.useState(undefined);
 
     async function uploadFile(){
         props.saveNFT("test", "this is a test", fileToUpload);
@@ -61,7 +63,7 @@ function Web3Layer(props){
                         <div className='icon-overlay' onClick={() => console.log('REFRESH CLICKED')}>
                             <i class="fas fa-sync-alt"></i>
                         </div>
-                        <Marker color={"#FF6666"}  width={30} anchor={[props.userLat, props.userLong]} />
+                        <Marker color={"#FF6666"}  width={30} anchor={[props.userLat + 0.0001, props.userLong - 0.0005]} />
                     </Map>
                 </div>
                 {networkObj ?

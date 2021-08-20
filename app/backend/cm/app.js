@@ -57,7 +57,6 @@ async function storeFiles(files) {
     console.log('stored files with cid:', cid);
     return cid;
 }
-
 async function UpdateDB(STREAM_ID){
     const metadata = {
             controllers: [ceramic.did.id],
@@ -148,27 +147,25 @@ async function run() {
 
     */ 
     app.post('/crtRec', async (req, res) => {
-        //console.log(req.body);
-        
-        let recSchemaLd = await TileDocument.load(ceramic, "kjzl6cwe1jw148i39genxu3u8s0xoretrry2hg9p5kem5swrp8wqi4cp20wnpvq");
+        let recSchemaLd = await TileDocument.load(ceramic, "kjzl6cwe1jw14axlzqjf02mha5b0dvyk05z60i3n6hz1f04i77z78g3jmd356a1");
         const rec = await TileDocument.create(ceramic, {
             lat: req.body.lat,
             long: req.body.long,
             metadata_uri: req.body.metadata_url,
             content_cid: req.body.content_cid,
             content_filename: req.body.content_filename,
-            chainId: req.body.chainId,
-            contractAddress: req.body.nftContractAddress,
-            ownerAddress: req.body.ownerAddress,
-            tokenId: req.body.tokenId,
+            chain_id: req.body.chainId,
+            contract_address: req.body.nftContractAddress,
+            owner_address: req.body.ownerAddress,
+            token_id: req.body.tokenId,
             category: [req.body.category],
             nsfw: req.body.nsfw ? true : false,
-            contentType: req.body.content_type,
+            content_type: req.body.content_type,
             name: req.body.name,
             desc: req.body.desc,
             stat_interaction: 0,
             stat_impressions: 0,
-            txnHash: req.body.txnHash
+            txn_hash: req.body.txnHash
           }, {
             controllers: [ceramic.did.id],
             family: 'niftidb',
@@ -216,6 +213,6 @@ async function run() {
 
 run().catch(console.error);
 
-//record schema: kjzl6cwe1jw148i39genxu3u8s0xoretrry2hg9p5kem5swrp8wqi4cp20wnpvq
+//record schema: kjzl6cwe1jw14axlzqjf02mha5b0dvyk05z60i3n6hz1f04i77z78g3jmd356a1
 //db schema: kjzl6cwe1jw146liocrczytyeesm23asu89rtyl6f7e7csdal3d7bycrq7e5zo7
 //db streamid: kjzl6cwe1jw148d384e00juj0sho9r5er8ju462545afehveirvzjbraxkjrxwi

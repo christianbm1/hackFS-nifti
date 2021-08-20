@@ -3,7 +3,21 @@ import "builtin.aqua"
 data Res:
   lat: f64
   long: f64
-  tag: string
+  metadata_uri: string
+  content_cid: string
+  content_filename: string
+  chain_id: u64
+  contract_address: string
+  owner_address: string
+  token_id: u64
+  category: []u8
+  nsfw: bool
+  content_type: string
+  name: string
+  desc: string
+  txn_hash: string
+  stat_interaction: u64
+  stat_impressions: u64
   key: string
 
 data Result:
@@ -12,12 +26,12 @@ data Result:
   error_msg: string
 
 service NiftiService:
-  check_location(my_lat: f64, my_long: f64, i_lat: f64, i_long: f64, dist: f64) -> bool
-  price_getter(dataIn: []Res, current_lat: f64, current_long: f64, distance: f64) -> Result
+  proximity_check(my_lat: f64, my_long: f64, i_lat: f64, i_long: f64, dist: f64) -> bool
+  proximity_filter(data_in: []Res, current_lat: f64, current_long: f64, distance: f64) -> Result
 
-func test(node: string, service_id: string, dataIn: []Res, current_lat: f64, current_long: f64, distance: f64) -> []Result:
+func nifti_proximity_filter(node: string, service_id: string, dataIn: []Res, current_lat: f64, current_long: f64, distance: f64) -> []Result:
   res: *Result
   on node:
     NiftiService service_id
-    res <- NiftiService.price_getter(dataIn, current_lat, current_long, distance)
+    res <- NiftiService.proximity_filter(dataIn, current_lat, current_long, distance)
   <- res
