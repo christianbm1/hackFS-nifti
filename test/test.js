@@ -41,8 +41,7 @@ describe("Inital Test", function(){
     });
 
     it('Read token URI', async function(){
-      console.log(await nft.connect(addr1).tokenURI(1));
-      expect(await nft.connect(addr1).tokenURI(2)).to.be.an('object');
+      expect(await nft.connect(addr1).tokenURI(2)).to.equal('abcd');
     });
 
 

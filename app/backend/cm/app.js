@@ -99,9 +99,6 @@ async function run() {
     ceramic.did.setProvider(provider);
     await ceramic.did.authenticate();
 
-
-
-
     app.get('/', (req, res) => {
         res.send('Hello World! - NiFTi')
     })
@@ -215,4 +212,4 @@ run().catch(console.error);
 
 //record schema: kjzl6cwe1jw14axlzqjf02mha5b0dvyk05z60i3n6hz1f04i77z78g3jmd356a1
 //db schema: kjzl6cwe1jw146liocrczytyeesm23asu89rtyl6f7e7csdal3d7bycrq7e5zo7
-//db streamid: kjzl6cwe1jw148d384e00juj0sho9r5er8ju462545afehveirvzjbraxkjrxwi
+//db streamid: kjzl6cwe1jw149nt5bsoyni2pd74yoemp43k8g6kr789lebgklj3jjx2ps0qngv

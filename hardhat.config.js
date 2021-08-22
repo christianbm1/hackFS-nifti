@@ -68,7 +68,9 @@ module.exports = {
   },
   gasReporter: {
     currency: 'USD',
-    enabled: true
-  }
+    enabled: true,
+    coinmarketcap: '36042fb7-4d94-4d4b-88e9-b6833d055aee',
+    showTimeSpent: true
+  },
 };
 
