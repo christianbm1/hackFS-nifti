@@ -33,75 +33,53 @@ abstract contract ContextMixin {
     }
 }
 
-contract NFTFactory is ERC721URIStorage, ContextMixin, Ownable  {
+contract NFTFactory is ERC721, ERC721URIStorage, ContextMixin, Ownable  {
     using Counters for Counters.Counter;
     using EnumerableMap for EnumerableMap.UintToAddressMap;
-    using EnumerableSet for EnumerableSet.UintSet;
-
     Counters.Counter private _tokenIds;
-    Counters.Counter private _billboardIds;
-
     EnumerableMap.UintToAddressMap private _tokenCreators;
-    EnumerableMap.UintToAddressMap private _billboardRentees;
-    EnumerableSet.UintSet private _billboard;
-
-    struct Revenues {
-        uint256 totalRevenue;
-        uint256 runningRevenue;
-    }
-
-    mapping(uint256 => Revenues) private billboardRevenue;
 
     constructor() public ERC721("NiFTi", "NIFTI") {}
-    
     receive() external payable {}
 
-    function mintNFT(address recipient, string memory tokenURI) public returns (uint256) {
+    function mintNFT(address recipient, string memory userTokenURI) public returns (uint256) {
         _tokenIds.increment();
-
         uint256 newItemId = _tokenIds.current();
         _safeMint(recipient, newItemId);
-        _setTokenURI(newItemId, tokenURI);
-        _tokenCreators.set(newItemId, msg.sender);
+        _setTokenURI(newItemId, userTokenURI);
+        _tokenCreators.set(newItemId, _msgSender());
         return newItemId;
     }
 
-    function assignBillBoardSpace(address recipient, string memory tokenURI) public returns (uint256){
-        _billboardIds.increment();
-        uint256 newItemId = _tokenIds.current();
-        _safeMint(recipient, newItemId);
-        _setTokenURI(newItemId, tokenURI);
-        _billboardRentees.set(newItemId, msg.sender);
-        _billboard.add(newItemId);
-        return newItemId;
+    function burnNFT(uint256 tokenId) public {
+        //require(_exists(tokenId), "NiFTi: token does not exist");
+        require(_isApprovedOrOwner(_msgSender(), tokenId), "NiFTi: can't burn token not owned");
+        _burn(tokenId);
+        _tokenCreators.remove(tokenId);
     }
 
-    function setBillboardRevenues(uint256 billBoardId, uint256 totalFlow, uint256 runningFlow) private returns (Revenues storage) {
-        billboardRevenue[billBoardId].totalRevenue = totalFlow;
-        billboardRevenue[billBoardId].runningRevenue = runningFlow;
-        return billboardRevenue[billBoardId];
+    function tokenURI(uint256 tokenId) public view override(ERC721, ERC721URIStorage) returns (string memory){
+        return super.tokenURI(tokenId);
     }
 
-    function removeBillboardSpace(address recipient, uint256 billboardId) private {
-        _billboard.remove(billboardId);
-        delete billboardRevenue[billboardId];
+    function getTokenCreator(uint256 tokenId) public view returns (address) {
+        return _tokenCreators.get(tokenId);
     }
 
-    function isApprovedForAll(
-        address _owner,
-        address _operator
-    ) public override view returns (bool isOperator) {
+    function isApprovedForAll(address _owner, address _operator) public override view returns (bool isOperator) {
       // if OpenSea's ERC721 Proxy Address is detected, auto-return true
         if (_operator == address(0x58807baD0B376efc12F5AD86aAc70E78ed67deaE)) {
             return true;
         }
-        
         // otherwise, use the default ERC721.isApprovedForAll()
-        return ERC721.isApprovedForAll(_owner, _operator);
+        return super.isApprovedForAll(_owner, _operator);
     }
 
-    function transferNFT(address from, address to, uint256 tokenId) public {
-        return ERC721.safeTransferFrom(from, to, tokenId);
+    function _burn(uint256 tokenId) internal override (ERC721, ERC721URIStorage) {
+        super._burn(tokenId);
     }
     
+    function _msgSender() internal override view returns (address sender) {
+        return ContextMixin.msgSender();
+    }
 }
