@@ -42,9 +42,7 @@ const CERAMIC_API_URL = "https://ceramic-clay.3boxlabs.com/";
 
 const ceramic = new CeramicClient(CERAMIC_API_URL);
 
-//const streamId = "kjzl6cwe1jw148d384e00juj0sho9r5er8ju462545afehveirvzjbraxkjrxwi";
-
-const nftContractAddress = '0x0425dDdc40d73E485ecd5aC25bd787b588f6f109';
+const nftContractAddress = '0x110245385d5d5C2A789Aafb26F8dd3aF5badc9Dc';
 
 const injectedConnector = new InjectedConnector({
   supportedChainIds: [
