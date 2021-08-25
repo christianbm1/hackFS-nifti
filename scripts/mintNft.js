@@ -1,27 +1,24 @@
 /*********** RUN COMMAND ************/
 //npx hardhat run scripts/deploy.js --network kovan
 /***********************************/
+//Interacting w/ contract : 0x110245385d5d5C2A789Aafb26F8dd3aF5badc9Dc
 const hre = require("hardhat");
 
 async function main() {
+  const deployedAddress = "0x110245385d5d5C2A789Aafb26F8dd3aF5badc9Dc";
   const [deployer, addr1] = await ethers.getSigners();
 
   console.log(
-    "Deploying contracts with the account:",
+    "Interacting contracts with the account:",
     deployer.address
   );
   
   console.log("Account balance:", (await deployer.getBalance()).toString());
     
   const NFT = await hre.ethers.getContractFactory("NFTFactory");
-  
-  const nft = await NFT.deploy();
-  
-  await nft.deployed();
+  const nft = NFT.attach(ethers.utils.getAddress(deployedAddress));
 
-  console.log(`The NFT Contract Owner is: ${await nft.owner()}`);
-
-  console.log("NFT Contract deployed to:", nft.address);
+  await nft.mintNFT(deployer.address, "aaaa")
   
   console.log("Account balance:", (await deployer.getBalance()).toString());
   

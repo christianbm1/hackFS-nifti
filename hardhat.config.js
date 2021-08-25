@@ -62,7 +62,7 @@ module.exports = {
       accounts: {mnemonic: mnemonic}
     },
     mumbai: {
-      url: process.env.POLYGON_TEST,
+      url: "https://matic-mumbai.chainstacklabs.com",
       accounts: [`${process.env.POLYGON_TEST_KEY}`, `${process.env.KOVAN_KEY_2}`],
     },
   },

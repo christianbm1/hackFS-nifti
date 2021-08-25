@@ -2,13 +2,14 @@
 pragma solidity 0.8.0;
 pragma experimental ABIEncoderV2;
 
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/utils/structs/EnumerableMap.sol";
 import "@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-import "hardhat/console.sol";
+//import "hardhat/console.sol";
 
 abstract contract ContextMixin {
     function msgSender()
@@ -33,7 +34,7 @@ abstract contract ContextMixin {
     }
 }
 
-contract NFTFactory is ERC721, ERC721URIStorage, ContextMixin, Ownable  {
+contract NFTFactory is ERC721, ERC721URIStorage, ContextMixin, Ownable {
     using Counters for Counters.Counter;
     using EnumerableMap for EnumerableMap.UintToAddressMap;
     Counters.Counter private _tokenIds;
@@ -78,7 +79,7 @@ contract NFTFactory is ERC721, ERC721URIStorage, ContextMixin, Ownable  {
     function _burn(uint256 tokenId) internal override (ERC721, ERC721URIStorage) {
         super._burn(tokenId);
     }
-    
+
     function _msgSender() internal override view returns (address sender) {
         return ContextMixin.msgSender();
     }
